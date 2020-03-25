@@ -18,7 +18,7 @@ class ConnectionProvider {
     @ConfigProperty(name = "quarkus.datasource.password")
     lateinit var password: String
 
-    @Produces
+//    @Produces
     fun getConnection() : Connection {
         return DriverManager.getConnection(url, userName, password)
     }

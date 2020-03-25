@@ -13,17 +13,16 @@ class ChoresService {
     lateinit var context: DSLContext
 
     fun getChores() : List<Chore> {
-        val result = context.select().from(CHORES).fetch()
-        return result.map { row ->
-            Chore(id = row.getValue(CHORES.ID),
-                    memberId = row.getValue(CHORES.MEMBER_ID),
-                    name = row.getValue(CHORES.NAME),
-                    description = row.getValue(CHORES.DESCRIPTION),
-                    frequency = Frequency.valueOf(row.getValue(CHORES.FREQUENCY)),
-                    deleted = row.getValue(CHORES.DELETED),
-                    completed = row.getValue(CHORES.COMPLETED),
-                    startDate = row.getValue(CHORES.START_DATE),
-                    endDate = row.getValue(CHORES.END_DATE)
+        return context.fetch(CHORES).map { row ->
+            Chore(id = row.id,
+                    memberId = row.memberId,
+                    name = row.name,
+                    description = row.description,
+                    frequency = Frequency.valueOf(row.frequency),
+                    deleted = row.deleted,
+                    completed = row.completed,
+                    startDate = row.startDate,
+                    endDate = row.endDate
             )
         }
     }
